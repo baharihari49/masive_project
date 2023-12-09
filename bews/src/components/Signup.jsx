@@ -1,15 +1,13 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function LoginForm() {
-  // Gantilah logika berikut sesuai dengan cara Anda menyimpan informasi akun
-  var penggunaPunyaAkun = false;
-
-  const handleLogin = (e) => {
+function SignupForm() {
+  // Logika pendaftaran pengguna dapat ditambahkan di sini
+  const handleSignup = (e) => {
     e.preventDefault();
-    // Logika autentikasi atau pengecekan akun dapat ditambahkan di sini
+    // Logika pendaftaran pengguna
   };
 
   return (
@@ -23,8 +21,16 @@ function LoginForm() {
           />
         </div>
         <div className="col-md-6">
-          <Form className="mt-3" onSubmit={handleLogin}>
-            <h2 className="text-center mb-4">Login to Your Account</h2>
+          <Form className="mt-3" onSubmit={handleSignup}>
+            <h2 className="text-center mb-4">Create an Account</h2>
+
+            {/* Tambahkan formulir pendaftaran di sini */}
+            {/* Contoh: */}
+            <Form.Group controlId="formBasicName">
+              <Form.Label>Name</Form.Label>
+              <Form.Control type="text" placeholder="Enter your name" required />
+            </Form.Group>
+
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control type="email" placeholder="Enter email" required />
@@ -35,16 +41,12 @@ function LoginForm() {
               <Form.Control type="password" placeholder="Password" required />
             </Form.Group>
 
-            <Form.Group controlId="formBasicCheckbox">
-              <Form.Check type="checkbox" label="Remember me" />
-            </Form.Group>
-
             <Button variant="primary" type="submit" className="w-100">
-              Login
+              Sign Up
             </Button>
 
             <p className="mt-3 text-center">
-              <Link to="/signup">Create an account</Link>
+              Already have an account? <Link to="/Formlogin">Login here</Link>
             </p>
           </Form>
         </div>
@@ -53,4 +55,4 @@ function LoginForm() {
   );
 }
 
-export default LoginForm;
+export default SignupForm;
