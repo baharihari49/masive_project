@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const user = require('../models/user')
 const jwt = require('jsonwebtoken')
+const authenticateToken = require('../middleware/authToken')
 
 const router = express.Router();
 router.use(bodyParser.json())
@@ -24,14 +25,24 @@ router.post('/login', (req, res) => {
             return res.status(500).json({message: 'internal server error'})
         }
 
-        if(result > 0) {
+        if(result.length > 0) {
             const user = result[0];
-            const token = jwt.sign({userId: user.id, username: user.username}, 'massive12345', {expiresIn: '1h'})
+            const userId = user.id
+            const username = user.username
+
+            const secretKey = 'hfgruhgurhgubuyrbgcyubyubgyubcnyuyugb5876t67ncty78567c6n456387n98xy6765657cx65n43865c936439x984'
+
+            const token = jwt.sign({userId, username}, secretKey, {expiresIn: '1h'})
             res.json({token})
         } else {
             res.status(401).json({message: 'invalid username or password'})
         }
     })
+})
+
+
+router.get('/', authenticateToken, (req,res) => {
+    return res.status(200).json({message: 'okee'})
 })
 
 

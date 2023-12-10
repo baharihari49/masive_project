@@ -14,15 +14,17 @@ const createUser = (userData, callback) => {
 }
 
 const authUser = (userData, callback) => {
-    const {username, password} = userData
-    const query = 'SELECT * FROM users WHERE username = ? AND password = ?'
-    db.query(query, [username, password], (err, result) => {
-        if(err) {
-            return callback(err, null)
-        }
-
-        return callback(null, result)
-    })
-}
+    const { username, password } = userData;
+    const query = 'SELECT * FROM users WHERE username = ? AND password = ?';
+  
+    db.query(query, [username, password], (err, results) => {
+      if (err) {
+        return callback(err, null);
+      }
+  
+      return callback(null, results);
+    });
+  };
+  
 
 module.exports = {createUser, authUser};
