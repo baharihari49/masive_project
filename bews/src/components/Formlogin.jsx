@@ -1,21 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from 'axios';
+import {useNavigate} from "react-router-dom";
+import { useAuth } from '../middelware/authContext';
 
 function LoginForm() {
-  // Gantilah logika berikut sesuai dengan cara Anda menyimpan informasi akun
-  var penggunaPunyaAkun = false;
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    // Logika autentikasi atau pengecekan akun dapat ditambahkan di sini
-  };
+    const [userData, setUserData] = useState({
+      username: '',
+      password: '',
+    })
+
+    const [message, setMessage] = useState('');
+
+    const {login} = useAuth();
+    const navigate = useNavigate()
+
+    const handelInputChange = (e) => {
+      setUserData({ ...userData, [e.target.name]: e.target.value})
+    }
+
+    const handelLogin = async () => {
+      try{
+        const response = await axios.post('http://localhost:3000/api/login', userData)
+        const token  = response.data.token
+        login(token)
+        navigate("/")
+      }catch (error) {
+        setMessage(error.response.data.message)
+      }
+    }
 
   return (
     <div className="container mt-5">
       <div className="row">
         <div className="col-md-6">
+          {/* Bagian foto */}
           <img
             src="src/assets/bgh3.jpeg"
             alt="Placeholder"
@@ -23,28 +44,30 @@ function LoginForm() {
           />
         </div>
         <div className="col-md-6">
-          <Form className="mt-3" onSubmit={handleLogin}>
+          {/* Bagian form login */}
+          <Form className="mt-3">
             <h2 className="text-center mb-4">Login to Your Account</h2>
+            <p>{message}</p>
             <Form.Group controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" required />
+              <Form.Label>username</Form.Label>
+              <Form.Control type="text" name="username" onChange={handelInputChange} placeholder="username" required />
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Password" required />
+              <Form.Control type="password" name="password" onChange={handelInputChange} placeholder="Password" required />
             </Form.Group>
 
             <Form.Group controlId="formBasicCheckbox">
               <Form.Check type="checkbox" label="Remember me" />
             </Form.Group>
 
-            <Button variant="primary" type="submit" className="w-100">
+            <Button onClick={handelLogin} variant="primary" type="button" className="w-100">
               Login
             </Button>
 
             <p className="mt-3 text-center">
-              <Link to="/signup">Create an account</Link>
+              <a href="#">Forgot password?</a>
             </p>
           </Form>
         </div>

@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const user = require('../models/user')
 const jwt = require('jsonwebtoken')
 const authenticateToken = require('../middleware/authToken')
+const checkout = require('../models/checkout')
 
 const router = express.Router();
 router.use(bodyParser.json())
@@ -37,6 +38,17 @@ router.post('/login', (req, res) => {
         } else {
             res.status(401).json({message: 'invalid username or password'})
         }
+    })
+})
+
+router.post('/checkout', authenticateToken, (req,res) => {
+    const checkoutData = req.body
+    checkout.createCheckout(checkoutData, (err, result) => {
+        if(err) {
+            return res.status(500).json({error: 'internal server error'})
+        }
+
+        return res.status(201).json({message: 'checkout created succesfully'})
     })
 })
 

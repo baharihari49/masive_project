@@ -3,8 +3,10 @@ import { Navbar, Container, Nav, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { useAuth } from '../middelware/authContext';
 
 function CustomNavbar() {
+  const { isLoggedIn, logout } = useAuth();
   return (
     <Navbar bg="dark" variant="dark" expand="lg" className="custom-navbar">
       <Container fluid>
@@ -19,10 +21,16 @@ function CustomNavbar() {
             <Nav.Link as={Link} to="/kontak" style={{ marginRight: '16px' }}>Kontak</Nav.Link>
           </Nav>
           <Nav className="ms-auto">
-            <Button variant="outline-light" as={Link} to="/FormLogin" style={{ marginRight: '10px' }}>
-              <FontAwesomeIcon icon={faUser} style={{ marginRight: '5px' }} />
-              Login
-            </Button>
+            {isLoggedIn ? (
+              <Button variant="outline-light" onClick={logout}>
+                Logout
+              </Button>
+            ) : (
+              <Button variant="outline-light" as={Link} to="/FormLogin" style={{ marginRight: '10px' }}>
+                <FontAwesomeIcon icon={faUser} style={{ marginRight: '5px' }} />
+                Login
+              </Button>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>

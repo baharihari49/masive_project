@@ -3,6 +3,8 @@ import { Container, Row, Col, Image, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Cart from './Cart'
 import '../service.css'
+import axios from 'axios'
+import { useAuth } from '../middelware/authContext';
 
 const ServiceItem = ({ service, onAdd, onSubtract, onAddToCart }) => {
   const itemStyle = {
@@ -59,6 +61,8 @@ const ServiceItem = ({ service, onAdd, onSubtract, onAddToCart }) => {
 };
 
 const Service = () => {
+  const {isToken} = useAuth()
+
   const [cartItems, setCartItems] = useState([]);
   const [services, setServices] = useState([
     { id: 1, name: 'Deep Cleaning', description: 'cuci semi foam secara keseluruhan & details proses kerja selama 3 hari', price:'Rp. 45.000', quantity: 0 },
@@ -87,10 +91,28 @@ const Service = () => {
     });
   };
 
-  const handleAddToCart = (id) => {
+  const handleAddToCart = async (id) => {
     const selectedItem = services.find((service) => service.id === id);
     setCartItems((prevCartItems) => [...prevCartItems, selectedItem]);
-    console.log(`Item dengan ID ${id} ditambahkan ke keranjang`);
+
+
+    try {
+      const response = await axios.post('http://localhost:3000/api/checkout', {
+        user_id: 1,
+        product_id: id,
+        quantity: selectedItem.quantity,
+        status: 'card'
+      }, {
+        headers: {
+          'Authorization': `Bearer ${isToken}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      console.log(`Item dengan ID ${id} ditambahkan ke keranjang dan disimpan ke database`, response.data);
+    } catch (error) {
+      console.error('Terjadi kesalahan:', error);
+    }
   };
 
   return (
