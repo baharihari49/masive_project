@@ -26,7 +26,7 @@ const HomePage = () => {
     { text: "Deskripsi Foto 6", bgColor: "bg-blue" },
   ];
   const handleLihatSelengkapnya = () => {
-    navigate('/service'); // Ganti menjadi navigate
+    navigate('/service'); 
   };
   return (
     <div>

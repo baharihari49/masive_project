@@ -17,6 +17,9 @@ import Cart from './components/Cart';
 import Datacostumer from './components/Datacustomer';
 import Pesanan from './components/Pesananditerima';
 import Profile from './components/Profile';
+import InvoiceSalah from './components/InvoiceSalah';
+import InvoiceBenar from './components/InvoiceBenar';
+import PaymentDetail from './components/PaymentDetail';
 
 function App() {
   return (
@@ -37,6 +40,9 @@ function App() {
         <Route path="/Datacostumer" element={<Datacostumer />} />
         <Route path="/Pesananditerima" element={<Pesanan />} />
         <Route path="/Profile" element={<Profile />} />
+        <Route path="/InvoiceSalah" element={<InvoiceSalah />} />
+        <Route path="/InvoiceBenar" element={<InvoiceBenar />} />
+        <Route path="/PaymentDetail" element={<PaymentDetail />} />
       </Routes>
       <Footer />
     </Router>
