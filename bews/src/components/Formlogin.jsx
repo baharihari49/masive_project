@@ -65,7 +65,9 @@ function LoginForm() {
             <Button onClick={handelLogin} variant="primary" type="button" className="w-100">
               Login
             </Button>
-
+            {/* <p className="mt-3 text-center">
+              Already have an account? <Link to="/Signup">Login here</Link>
+            </p> */}
             <p className="mt-3 text-center">
               <a href="#">Forgot password?</a>
             </p>
