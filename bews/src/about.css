@@ -8,6 +8,7 @@ body{
 
 h2 {
   color: black;
+  margin-top: 35px;
 }
 
 p {
@@ -40,4 +41,9 @@ h3 {
 
 .Container{
   padding-bottom: 30px;
+}
+.img-fluid{
+height: 300px;
+width:420px;
+margin-left: 35px;
 }

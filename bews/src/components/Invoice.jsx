@@ -24,7 +24,7 @@ function Invoice() {
         <div className="col-md-6">
           {/* Bagian foto */}
           <img
-            src="src/assets/bewstransparan.png"
+            src="src/assets/bg galeri.jpg"
             alt="Placeholder"
             className="img-fluid"
           />

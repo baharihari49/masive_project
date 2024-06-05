@@ -6,11 +6,11 @@ import '../home.css';
 const HomePage = () => {
   const navigate = useNavigate(); 
   const backgroundStyles1 = {
-    backgroundImage: `url('src/assets/landingbg.jpeg')`,
+    backgroundImage: `url('src/assets/landingbg.jpg')`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   };
-
+  
   const backgroundStyles2 = {
     // backgroundImage: `url('src/assets/background2.jpg')`, 
     backgroundSize: 'cover',
@@ -28,23 +28,30 @@ const HomePage = () => {
   const handleLihatSelengkapnya = () => {
     navigate('/service'); 
   };
+  const buttonStyles = {
+    backgroundColor: '#001f3f', 
+    color: 'white',
+    border: '#001f3f ', 
+  };
   return (
     <div>
     <div className="bg-home" style={backgroundStyles1}>
       <Container className="content">
-        <h1>Selamat Datang di Website Brews Treatment</h1>
+        <h1>Selamat Datang di Website WashUp Shoes</h1>
         <h4>
           Lorem ipsum dolor sit amet consectetur adipisicing elit...
         </h4>
+        <Button style={buttonStyles} 
+          onClick={() => navigate('/service')}>Layanan</Button>
       </Container>
     </div>
 
     <div className="konten2" style={backgroundStyles2}>
     <Container className="content">
       <Row>
-        <Col md={6}>
+        <Col md={4}>
           <img
-            src="src/assets/bewstransparan.png"
+            src="src/assets/Untitled.png"
             alt="Foto"
             className="img-fluid"
           />

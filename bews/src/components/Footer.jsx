@@ -11,9 +11,12 @@ const Footer = () => {
         
         <div className="footer-left">
          
-          <img src="src/assets/bewstransparan.png" alt="Logo" className="footer-logo" />
-         
-          <p>Bews Treatment siap membersihkan dan membuat sepatu anda layaknya seperti baru kembali.</p>
+          <img src="src/assets/logo footer.png" alt="Logo" className="footer-logo" />
+          </div>
+          <div className="footer-left2">
+          <p>WashUp Shoes<br/>
+          Cleanig-Repair-Repaint
+          </p>
         </div>
       </Col>
       <Col md={8}>

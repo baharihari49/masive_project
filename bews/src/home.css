@@ -23,7 +23,11 @@
   height: 100vh; 
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
+  
+}
+.konten2 img{
+  left: 30px;
 }
 
 h2 {

@@ -8,7 +8,7 @@ const About = () => {
       <Row>
         <Col md={6}>
           <img
-            src="src/assets/bewstransparan.png"
+            src="src/assets/Untitled.png"
             alt="Foto"
             className="img-fluid"
           />

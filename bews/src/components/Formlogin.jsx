@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
-import {useNavigate} from "react-router-dom";
+import {useNavigate, Link} from "react-router-dom";
 import { useAuth } from '../middelware/authContext';
 
 function LoginForm() {
@@ -65,11 +65,11 @@ function LoginForm() {
             <Button onClick={handelLogin} variant="primary" type="button" className="w-100">
               Login
             </Button>
-            {/* <p className="mt-3 text-center">
-              Already have an account? <Link to="/Signup">Login here</Link>
-            </p> */}
             <p className="mt-3 text-center">
               <a href="#">Forgot password?</a>
+            </p>
+            <p className="mt-3 text-center">
+              Don't have an account? <Link to="/SignUp">Sign Up</Link>
             </p>
           </Form>
         </div>

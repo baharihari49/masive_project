@@ -30,11 +30,11 @@ function Galeri() {
         <h1 style={{ margin: '70px 0' }}>Galeri Kami</h1>
       </header>
 
-      <div className="container mt-4">
+      <div className="container mt-5">
         <div className="row">
           {/* Single full-width image on the left */}
           <div className="col-md-6">
-            <img src="src/assets/bggaleri.JPG" alt="Full Image" className="img-fluid" />
+            <img src="src/assets/bg galeri.jpg" alt="Full Image" className="img-fluid" />
           </div>
 
           {/* Gallery with 8 images on the right */}
